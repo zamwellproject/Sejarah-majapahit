@@ -1,0 +1,1996 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3B0A0E">
+  <title>Riset Sejarah Kerajaan Majapahit — Kelompok 8 (Kelas 10A)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #FAF6EF;
+      --bg-cream-card: #F4EEDC;
+      --terracotta-dark: #3B0A0E;
+      --terracotta-accent: #7A2012;
+      --terracotta-light: #9E3524;
+      --gold-monarchy: #D4AF37;
+      --gold-bright: #F5D77F;
+      --wood-dark: #1A0507;
+      --text-main: #2C1F1D;
+      --text-muted: #6B5B57;
+      --border-gold: rgba(212, 175, 55, 0.4);
+      --shadow-keraton: 0 14px 34px rgba(35, 8, 10, 0.19);
+      --font-header-decorative: 'Cinzel Decorative', serif;
+      --font-header: 'Cinzel', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --slide-duration: 600ms;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--font-body);
+      background-color: var(--wood-dark);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button:focus-visible,
+    .image-frame:focus-visible,
+    .flip-card:focus-visible {
+      outline: 3px solid var(--gold-bright);
+      outline-offset: 4px;
+    }
+
+    /* BACKGROUND */
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-color: var(--bg-cream);
+      background-image:
+        radial-gradient(rgba(212, 175, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to right, rgba(122, 32, 18, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(122, 32, 18, 0.035) 1px, transparent 1px);
+      background-size: 32px 32px, 64px 64px, 64px 64px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: linear-gradient(180deg, #3B0A0E 0%, #28070A 100%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 100;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.25);
+    }
+
+    .progress-bar-container {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold-monarchy), var(--gold-bright));
+      transition: width 350ms ease;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .surya-logo {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35));
+    }
+
+    .brand-title {
+      font-family: var(--font-header);
+      font-size: 14px;
+      letter-spacing: 1.2px;
+      color: var(--gold-monarchy);
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title span {
+      color: #E0D5D3;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.4px;
+      margin-top: 2px;
+    }
+
+    .app-controls {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .btn-icon {
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      color: var(--gold-bright);
+      border-radius: 6px;
+      padding: 8px 13px;
+      font-size: 11px;
+      font-family: var(--font-header);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: background 220ms ease, color 220ms ease, border-color 220ms ease;
+    }
+
+    .btn-icon:hover {
+      background: var(--gold-monarchy);
+      color: var(--terracotta-dark);
+      border-color: var(--gold-bright);
+    }
+
+    /* SLIDE AREA */
+    .slide-viewport {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 64px);
+      height: calc(100dvh - 64px);
+      margin-top: 64px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-deck {
+      position: relative;
+      width: 92%;
+      height: 90%;
+      max-width: 1400px;
+      min-height: 0;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-cream);
+      border: 1px solid rgba(212, 175, 55, 0.8);
+      border-radius: 14px;
+      padding: 36px 44px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateX(28px) scale(0.99);
+      transition:
+        opacity var(--slide-duration) ease,
+        transform var(--slide-duration) cubic-bezier(0.22, 1, 0.36, 1),
+        visibility var(--slide-duration);
+      box-shadow: var(--shadow-keraton);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      will-change: transform, opacity;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(0) scale(1);
+      z-index: 2;
+    }
+
+    .slide.enter-from-right {
+      transform: translateX(55px) scale(0.985);
+      opacity: 0;
+    }
+
+    .slide.enter-from-left {
+      transform: translateX(-55px) scale(0.985);
+      opacity: 0;
+    }
+
+    .slide.exit-to-left {
+      opacity: 0;
+      transform: translateX(-45px) scale(0.99);
+      visibility: visible;
+      z-index: 1;
+    }
+
+    .slide.exit-to-right {
+      opacity: 0;
+      transform: translateX(45px) scale(0.99);
+      visibility: visible;
+      z-index: 1;
+    }
+
+    /* ORNAMEN SUDUT */
+    .slide::before,
+    .slide::after {
+      content: '';
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: 1.5px solid rgba(212, 175, 55, 0.85);
+      pointer-events: none;
+    }
+
+    .slide::before {
+      top: 10px;
+      left: 10px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .slide::after {
+      bottom: 10px;
+      right: 10px;
+      border-left: none;
+      border-top: none;
+    }
+
+    /* HEADER SLIDE */
+    .slide-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid rgba(122, 32, 18, 0.2);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .slide-title-group h2 {
+      font-family: var(--font-header);
+      font-size: 25px;
+      color: var(--terracotta-dark);
+      font-weight: 800;
+      letter-spacing: 0.35px;
+      line-height: 1.3;
+    }
+
+    .slide-title-group p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 5px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .speaker-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--terracotta-dark);
+      color: var(--gold-bright);
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 600;
+      border: 1px solid rgba(212, 175, 55, 0.65);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .speaker-badge svg {
+      fill: var(--gold-bright);
+    }
+
+    /* CONTENT GRID */
+    .slide-body {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      gap: 22px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 2px 4px 5px 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(122,32,18,0.3) transparent;
+    }
+
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .grid-1-2 { grid-template-columns: 1fr 2fr; }
+    .grid-2-1 { grid-template-columns: 2fr 1fr; }
+
+    /* CARD */
+    .card-box {
+      background: var(--bg-cream-card);
+      border: 1px solid rgba(122, 32, 18, 0.19);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(59,10,14,0.035);
+      position: relative;
+      transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+    }
+
+    .card-box:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212, 175, 55, 0.8);
+      box-shadow: 0 7px 18px rgba(59,10,14,0.08);
+    }
+
+    .card-box h3 {
+      font-family: var(--font-header);
+      font-size: 15px;
+      color: var(--terracotta-accent);
+      margin-bottom: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.45;
+    }
+
+    .card-box p,
+    .card-box ul {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .card-box ul {
+      list-style-type: none;
+    }
+
+    .card-box ul li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card-box ul li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      color: #B18B2E;
+      font-size: 8px;
+      top: 4px;
+    }
+
+    /* TABS */
+    .tab-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .tab-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(122,32,18,0.15);
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 16px;
+      font-family: var(--font-header);
+      font-size: 11px;
+      font-weight: 700;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 220ms ease;
+    }
+
+    .tab-btn.active {
+      color: var(--terracotta-accent);
+      border-bottom-color: var(--terracotta-accent);
+      background: rgba(212,175,55,0.07);
+      border-radius: 5px 5px 0 0;
+    }
+
+    .tab-content {
+      display: none;
+      background: var(--bg-cream-card);
+      border-radius: 10px;
+      padding: 22px;
+      border: 1px solid rgba(122,32,18,0.17);
+      animation: fadeContent 300ms ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .tab-content h3 {
+      font-family: var(--font-header);
+      font-size: 17px;
+      color: var(--terracotta-accent);
+      margin-bottom: 12px;
+    }
+
+    .tab-content p {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    @keyframes fadeContent {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* FLIP CARD */
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: 260px;
+      perspective: 1000px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: left;
+      transition: transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 4px 13px rgba(0,0,0,0.07);
+    }
+
+    .flip-card-front {
+      background: var(--bg-cream-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .flip-card-back {
+      background: var(--terracotta-dark);
+      color: #FFF;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .flip-card-back h4 {
+      font-family: var(--font-header);
+      color: var(--gold-monarchy);
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .flip-card-back p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #E0D5D3;
+    }
+
+    /* IMAGE FRAME - AUTO CROP */
+    .image-frame {
+      width: 100%;
+      height: 220px;
+      min-height: 150px;
+      border-radius: 9px;
+      border: 1px solid rgba(212,175,55,0.75);
+      overflow: hidden;
+      position: relative;
+      background: #2A1A18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 13px rgba(0,0,0,0.1);
+      isolation: isolate;
+    }
+
+    .image-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 450ms ease, opacity 350ms ease;
+      opacity: 0;
+    }
+
+    .image-frame.has-image img {
+      opacity: 1;
+    }
+
+    .image-frame:hover img {
+      transform: scale(1.035);
+    }
+
+    .image-frame:not(.has-image) img {
+      display: none;
+    }
+
+    .img-placeholder-text {
+      position: absolute;
+      inset: auto 0 0 0;
+      color: var(--gold-bright);
+      font-family: var(--font-header);
+      font-size: 10px;
+      text-align: center;
+      padding: 12px 10px;
+      background: rgba(35,8,10,0.88);
+      border-top: 1px solid rgba(212,175,55,0.4);
+      letter-spacing: 0.35px;
+      line-height: 1.5;
+      z-index: 2;
+    }
+
+    .image-frame.has-image .img-placeholder-text {
+      background: rgba(35,8,10,0.72);
+    }
+
+    /* NAVIGATION */
+    .nav-floating {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: var(--terracotta-dark);
+      border: 1px solid rgba(212,175,55,0.8);
+      border-radius: 50%;
+      color: var(--gold-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 50;
+      transition: background 220ms ease, transform 220ms ease;
+      box-shadow: 0 4px 13px rgba(0,0,0,0.25);
+    }
+
+    .nav-floating:hover {
+      background: var(--terracotta-accent);
+      transform: translateY(-50%) scale(1.07);
+    }
+
+    .nav-floating:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .nav-prev { left: 18px; }
+    .nav-next { right: 18px; }
+
+    /* DRAWER */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 5, 7, 0.86);
+      backdrop-filter: blur(7px);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 280ms ease, visibility 280ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .drawer-content {
+      background: var(--bg-cream);
+      border: 1px solid var(--gold-monarchy);
+      border-radius: 13px;
+      width: 100%;
+      max-width: 1100px;
+      max-height: 85vh;
+      padding: 28px;
+      overflow-y: auto;
+      transform: translateY(10px);
+      transition: transform 280ms ease;
+    }
+
+    .drawer-overlay.active .drawer-content {
+      transform: translateY(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border-gold);
+      padding-bottom: 12px;
+    }
+
+    .drawer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 13px;
+    }
+
+    .drawer-item {
+      background: var(--bg-cream-card);
+      border: 1px solid rgba(122,32,18,0.17);
+      border-radius: 7px;
+      padding: 14px;
+      cursor: pointer;
+      transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .drawer-item:hover,
+    .drawer-item.active {
+      border-color: var(--gold-monarchy);
+      background: var(--terracotta-dark);
+      color: var(--gold-bright);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.84);
+      z-index: 300;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 250ms ease, visibility 250ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: var(--bg-cream);
+      border: 1px solid var(--gold-monarchy);
+      border-radius: 11px;
+      max-width: 700px;
+      width: 100%;
+      padding: 28px;
+      position: relative;
+      transform: translateY(8px) scale(0.99);
+      transition: transform 250ms ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    #modal-desc {
+      white-space: pre-line;
+    }
+
+    /* UTILITY */
+    .badge-gold {
+      background: var(--gold-monarchy);
+      color: var(--terracotta-dark);
+      padding: 4px 9px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .highlight-text {
+      color: var(--terracotta-accent);
+      font-weight: 700;
+    }
+
+    /* RESPONSIVE TABLET */
+    @media (max-width: 1000px) {
+      .slide-deck {
+        width: 91%;
+        height: 88%;
+      }
+
+      .slide {
+        padding: 28px 30px;
+      }
+
+      .slide-title-group h2 {
+        font-size: 21px;
+      }
+
+      .speaker-badge {
+        font-size: 9px;
+        padding: 6px 10px;
+      }
+
+      .nav-prev { left: 8px; }
+      .nav-next { right: 8px; }
+
+      .nav-floating {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* RESPONSIVE MOBILE */
+    @media (max-width: 700px) {
+      .top-bar {
+        height: 58px;
+        padding: 0 12px;
+      }
+
+      .brand-container {
+        gap: 8px;
+      }
+
+      .surya-logo {
+        width: 29px;
+        height: 29px;
+      }
+
+      .brand-title {
+        font-size: 10px;
+        letter-spacing: 0.7px;
+      }
+
+      .brand-title span {
+        font-size: 8px;
+      }
+
+      .app-controls {
+        gap: 5px;
+      }
+
+      .btn-icon {
+        padding: 8px;
+        font-size: 9px;
+        gap: 4px;
+      }
+
+      .app-controls .btn-icon svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .slide-viewport {
+        height: calc(100dvh - 58px);
+        margin-top: 58px;
+        align-items: stretch;
+      }
+
+      .slide-deck {
+        width: 100%;
+        height: 100%;
+      }
+
+      .slide {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        padding: 23px 18px 26px;
+      }
+
+      .slide-header {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+        padding-bottom: 11px;
+      }
+
+      .slide-title-group h2 {
+        font-size: 17px;
+      }
+
+      .slide-title-group p {
+        font-size: 10px;
+      }
+
+      .speaker-badge {
+        font-size: 9px;
+        padding: 5px 10px;
+      }
+
+      .slide-body {
+        gap: 13px;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-1-2,
+      .grid-2-1 {
+        grid-template-columns: 1fr;
+      }
+
+      .card-box {
+        padding: 16px;
+      }
+
+      .card-box h3 {
+        font-size: 13px;
+      }
+
+      .card-box p,
+      .card-box ul {
+        font-size: 12px;
+      }
+
+      .image-frame {
+        height: 210px;
+      }
+
+      .flip-card {
+        height: 220px;
+      }
+
+      .nav-floating {
+        width: 36px;
+        height: 36px;
+        top: auto;
+        bottom: 10px;
+        transform: none;
+        z-index: 80;
+      }
+
+      .nav-floating:hover {
+        transform: scale(1.05);
+      }
+
+      .nav-prev { left: 15px; }
+      .nav-next { right: 15px; }
+
+      .drawer-overlay {
+        padding: 12px;
+      }
+
+      .drawer-content {
+        padding: 18px;
+        max-height: 90vh;
+      }
+
+      .drawer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .drawer-item {
+        padding: 11px;
+        font-size: 10px;
+      }
+
+      .modal-card {
+        padding: 20px;
+      }
+
+      .tab-btn {
+        padding: 9px 10px;
+        font-size: 9px;
+      }
+
+      .tab-content {
+        padding: 16px;
+      }
+
+      .tab-content h3 {
+        font-size: 14px;
+      }
+
+      .tab-content p {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .brand-title span {
+        display: none;
+      }
+
+      .app-controls .btn-icon {
+        padding: 7px 6px;
+      }
+
+      .drawer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-pattern"></div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="brand-container">
+      <svg class="surya-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Lambang Surya Majapahit">
+        <circle cx="50" cy="50" r="46" fill="#3B0A0E" stroke="#D4AF37" stroke-width="4"/>
+        <path d="M50 4 L56 36 L88 30 L64 52 L84 78 L52 64 L36 92 L34 60 L8 72 L30 46 L6 22 L38 30 Z" fill="#D4AF37" stroke="#F5D77F" stroke-width="1"/>
+        <circle cx="50" cy="50" r="14" fill="#F5D77F" stroke="#3B0A0E" stroke-width="2"/>
+        <circle cx="50" cy="50" r="6" fill="#3B0A0E"/>
+      </svg>
+
+      <div class="brand-title">
+        KEDATON MAJAPAHIT
+        <span>Riset Sejarah • Kelompok 8 (Kelas 10A)</span>
+      </div>
+    </div>
+
+    <div class="app-controls">
+      <button class="btn-icon" onclick="toggleGlosarium()" aria-label="Buka glosarium">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+        Glosarium
+      </button>
+
+      <button class="btn-icon" onclick="openDrawer()" aria-label="Buka navigasi slide">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        Grid (<span id="slide-num-indicator">1/14</span>)
+      </button>
+
+      <button class="btn-icon" id="fullscreen-btn" onclick="toggleFullscreen()" aria-label="Aktifkan fullscreen">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        <span id="fullscreen-label">Fullscreen</span>
+      </button>
+    </div>
+
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BUTTONS -->
+  <button class="nav-floating nav-prev" id="prev-btn" onclick="changeSlide(-1)" aria-label="Slide sebelumnya">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+
+  <button class="nav-floating nav-next" id="next-btn" onclick="changeSlide(1)" aria-label="Slide berikutnya">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+
+  <!-- SLIDE VIEWPORT -->
+  <div class="slide-viewport">
+    <div class="slide-deck">
+
+      <!-- SLIDE 1: COVER -->
+      <div class="slide active">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>KERAJAAN MAJAPAHIT</h2>
+            <p>Eksplorasi Peradaban Agraris-Maritim Nusantara (1293–1527 M)</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Maliq Adrian Enver
+          </div>
+        </div>
+
+        <div class="slide-body grid-2-1">
+          <div class="card-box" style="display:flex; flex-direction:column; justify-content:center; background:linear-gradient(135deg,#FAF6EF 0%,#F4EEDC 100%);">
+            <span class="badge-gold" style="width:fit-content; margin-bottom:12px;">Proyek Riset Sejarah Kelas X-10A</span>
+            <h1 style="font-family:var(--font-header-decorative); font-size:34px; color:var(--terracotta-dark); margin-bottom:14px; line-height:1.2;">Nusantara Imperial Grandeur</h1>
+            <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">
+              Kajian kritis atas sistem politik birokrasi, kejayaan ekonomi dua dimensi, toleransi keagamaan, serta legitimasi bukti prasasti dan kesusastraan kuno.
+            </p>
+            <div style="border-top:1px solid var(--border-gold); padding-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+              <div>
+                <strong style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Kelompok 8</strong>
+                <p style="font-weight:700; font-size:13.5px;">Maliq Adrian Enver</p>
+                <p style="font-size:11.5px; color:var(--terracotta-accent);">Koordinator & Peneliti Ekonomi</p>
+              </div>
+              <div>
+                <strong style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Anggota Tim</strong>
+                <p style="font-weight:700; font-size:13.5px;">Azzam Wildan Gaza</p>
+                <p style="font-size:11.5px; color:var(--terracotta-accent);">Peneliti Sosbud & Desainer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="image-frame" role="button" tabindex="0" onclick="openModal('Situs Gapura Wringin Lawang','Situs gerbang bata merah peninggalan era Majapahit di Trowulan, Mojokerto.')" onkeydown="imageFrameKey(event,'Situs Gapura Wringin Lawang','Situs gerbang bata merah peninggalan era Majapahit di Trowulan, Mojokerto.')">
+            <img src="https://i.ibb.co.com/p5cK0Hp/IMG-1015.jpg" alt="Situs Keraton Trowulan" data-position="center center">
+            <div class="img-placeholder-text">Situs Keraton Trowulan (Klik untuk Detail)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: GEOGRAFI & GEOPOLITIK -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>PETA GEOGRAFI & WILAYAH KEKUASAAN</h2>
+            <p>Pusat Keraton Trowulan dan Jaringan Mandala Nusantara</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Azzam Wildan Gaza
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="card-box">
+            <h3>Geopolitik Strategis Sungai Brantas</h3>
+            <ul>
+              <li><strong>Pusat Pemerintahan:</strong> Berpusat di Trowulan, memadukan pertahanan alur sungai strategis dan dataran subur vulkanik.</li>
+              <li><strong>Struktur Mandala:</strong> Kekuasaan dibagi atas <em>Negara Agung</em> (Jawa Timur), <em>Mancanegara</em>, dan <em>Nusantara</em> (wilayah upeti).</li>
+              <li><strong>Pelabuhan Kunci:</strong> Pelabuhan Canggu dan Tuban menjadi gerbang utama penghubung niaga antarpulau dan mancanegara.</li>
+            </ul>
+          </div>
+
+          <div class="image-frame" role="button" tabindex="0" onclick="openModal('Peta Geopolitik Majapahit','Visualisasi konseptual cakupan pengaruh teritorial kekaisaran maritim.')" onkeydown="imageFrameKey(event,'Peta Geopolitik Majapahit','Visualisasi konseptual cakupan pengaruh teritorial kekaisaran maritim.')">
+            <img src="https://i.ibb.co.com/3mZH9wGM/IMG-1014.jpg" alt="Peta Wilayah" data-position="center center">
+            <div class="img-placeholder-text">Peta Wilayah & Alur Sungai Brantas</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: TIMELINE SEJARAH -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>GARIS WAKTU KRONOLOGIS (1293–1527 M)</h2>
+            <p>Empat Dinamika Era: Pendirian, Gejolak, Kejayaan, hingga Keruntuhan</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Maliq Adrian Enver
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="card-box">
+            <h3>Fase Awal & Dinasti Pendiri</h3>
+            <ul>
+              <li><strong>1293 M:</strong> Raden Wijaya mendirikan Majapahit bergelar Kertarajasa Jayawardhana.</li>
+              <li><strong>1309–1328 M:</strong> Era pemerintahan Jayanegara diwarnai berbagai gejolak faksi internal istana.</li>
+              <li><strong>1350–1389 M:</strong> Puncak keemasan di bawah Hayam Wuruk dan Mahapatih Gajah Mada.</li>
+            </ul>
+          </div>
+          <div class="card-box">
+            <h3>Fase Disintegrasi & Akhir Keraton</h3>
+            <ul>
+              <li><strong>1404–1406 M:</strong> Perang Paregreg (perang saudara) yang melemahkan stabilitas politik pusat.</li>
+              <li><strong>Abad ke-15 M:</strong> Peralihan hegemon perdagangan pesisir utara ke pelabuhan Islam.</li>
+              <li><strong>1527 M:</strong> Keruntuhan akhir pusat kekuasaan keraton di Jawa Timur.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: PILAR POLITIK (1) -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>PILAR POLITIK: STRUKTUR BIROKRASI</h2>
+            <p>Falsafah Kepemimpinan Kedaton dan Lembaga Saptaprabhu</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Azzam Wildan Gaza
+          </div>
+        </div>
+
+        <div class="slide-body">
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-btn active" onclick="switchTab(this,'tab-birokrasi')">Birokrasi Pusat</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-saptaprabhu')">Bhatara Saptaprabhu</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-hukum')">Kitab Hukum Kutara</button>
+            </div>
+
+            <div id="tab-birokrasi" class="tab-content active">
+              <h3>Hierarki Pejabat Istana</h3>
+              <p>
+                Pemerintahan dipimpin Raja dibantu oleh <strong>Rakryan Mahamantri Katrini</strong> dan dewan menteri eksekutif <em>Rakryan Mantri ri Pakira-kiran</em> yang mengelola administrasi harian negara.
+              </p>
+            </div>
+
+            <div id="tab-saptaprabhu" class="tab-content">
+              <h3>Dewan Pertimbangan Agung</h3>
+              <p>
+                <strong>Bhatara Saptaprabhu</strong> adalah dewan kehormatan beranggotakan kerabat senior raja yang berfungsi memutuskan suksesi dan arah kebijakan strategis kerajaan.
+              </p>
+            </div>
+
+            <div id="tab-hukum" class="tab-content">
+              <h3>Sistem Perundang-Undangan</h3>
+              <p>
+                Penegakan hukum didasarkan pada kitab <em>Agama / Kutara Manawa</em> yang mengatur hukum perdata, pidana, pertanahan, serta perlindungan hak warganegara.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: PILAR POLITIK (2) -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>DIPLOMASI & SUMPAH PALAPA</h2>
+            <p>Visi Integrasi Nusantara dan Hubungan Luar Negeri</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Maliq Adrian Enver
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="card-box">
+            <h3>Sumpah Palapa (1336 M)</h3>
+            <p>
+              Sumpah suci Mahapatih Gajah Mada untuk tidak menikmati kenikmatan duniawi sebelum berhasil menyatukan kepulauan Nusantara di bawah panji kekaisaran.
+            </p>
+          </div>
+          <div class="card-box">
+            <h3>Doktrin Hubungan Mitreka Satata</h3>
+            <p>
+              Menerapkan politik luar negeri yang bersahabat dan setara dengan kerajaan sahabat seperti Ayutthaya, Champa, Kamboja, serta Kekaisaran Tiongkok.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: PILAR EKONOMI -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>PILAR EKONOMI: AGRARIS-MARITIM</h2>
+            <p>Simbiosis Irigasi Pedalaman dan Jaringan Perdagangan Laut</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Azzam Wildan Gaza
+          </div>
+        </div>
+
+        <div class="slide-body grid-3">
+          <div class="card-box">
+            <h3>Irigasi & Surplus Pangan</h3>
+            <p>Pengelolaan sistem bendungan dan kanal air memastikan produktivitas pertanian padi berkualitas tinggi sebagai komoditas ekspor.</p>
+          </div>
+          <div class="card-box">
+            <h3>Pelabuhan Internasional</h3>
+            <p>Canggu dan Tuban menjadi pusat transit rempah-rempah Maluku yang diperdagangkan dengan pedagang India, Persia, dan Tiongkok.</p>
+          </div>
+          <div class="card-box">
+            <h3>Mata Uang Kepeng</h3>
+            <p>Penggunaan koin perunggu impor (picis) memfasilitasi kelancaran ekonomi pasar domestik dan pungutan pajak terpusat.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7: SOSIAL-BUDAYA -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>PILAR SOSIAL-BUDAYA & KEPERCAYAAN</h2>
+            <p>Sinkretisme Siwa-Buddha dan Kemajuan Sastra Kuno</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Maliq Adrian Enver
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="card-box">
+            <h3>Toleransi Keagamaan Resmi</h3>
+            <p>
+              Dharmadhyaksa Ring Kasaiwan (Siwa) dan Ring Kasugatan (Buddha) memimpin kehidupan spiritual berdampingan secara harmonis di bawah semboyan <em>Bhinneka Tunggal Ika</em>.
+            </p>
+          </div>
+          <div class="card-box">
+            <h3>Kesusastraan Empu</h3>
+            <p>
+              Lahirnya karya-karya sastra monumental seperti Kakawin Sutasoma (Mpu Tantular) dan Nagarakretagama yang mengabadikan tatanan moral zamannya.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8: BUKTI SEJARAH 1 -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>BUKTI SEJARAH I: PRASASTI KUDADU</h2>
+            <p>Legitimasi Legal Pendirian Kerajaan Majapahit (1294 M)</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Azzam Wildan Gaza
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="flip-card" tabindex="0" role="button" aria-label="Balik kartu Prasasti Kudadu" aria-pressed="false">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="badge-gold">Prasasti Tembaga</span>
+                <h3>Prasasti Kudadu (1216 Saka)</h3>
+                <p>Ketuk/Arahkan kursor untuk membalik kartu lempengan prasasti.</p>
+              </div>
+              <div class="flip-card-back">
+                <h4>Analisis Filologis</h4>
+                <p>Merekam kisah pelarian Raden Wijaya dan anugerah status tanah perdikan (sima) kepada penduduk desa Kudadu yang telah memberikan perlindungan.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="image-frame" role="button" tabindex="0" onclick="openModal('Prasasti Kudadu','Lempengan prasasti tembaga peninggalan awal berdirinya Majapahit.')" onkeydown="imageFrameKey(event,'Prasasti Kudadu','Lempengan prasasti tembaga peninggalan awal berdirinya Majapahit.')">
+            <img src="https://i.ibb.co.com/qLMLgyYv/IMG-1010.jpg" alt="Prasasti Kudadu" data-position="center center">
+            <div class="img-placeholder-text">Prasasti Kudadu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 9: BUKTI SEJARAH 2 -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>BUKTI SEJARAH II: NAGARAKRETAGAMA</h2>
+            <p>Naskah Kakawin Karya Mpu Prapanca (1365 M)</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Maliq Adrian Enver
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="flip-card" tabindex="0" role="button" aria-label="Balik kartu Nagarakretagama" aria-pressed="false">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="badge-gold">Naskah Lontar</span>
+                <h3>Desawarnana / Nagarakretagama</h3>
+                <p>Ketuk kartu untuk melihat transkripsi sejarah otentik.</p>
+              </div>
+              <div class="flip-card-back">
+                <h4>Kandungan Naskah</h4>
+                <p>Memuat laporan rinci tata kota keraton, daftar wilayah jajahan, serta catatan perjalanan suci Raja Hayam Wuruk ke seluruh penjuru kerajaan.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="image-frame" role="button" tabindex="0" onclick="openModal('Naskah Nagarakretagama','Manuskrip lontar warisan ingatan dunia yang diakui UNESCO.')" onkeydown="imageFrameKey(event,'Naskah Nagarakretagama','Manuskrip lontar warisan ingatan dunia yang diakui UNESCO.')">
+            <img src="https://i.ibb.co.com/4nVTmggd/IMG-1011.jpg" alt="Nagarakretagama" data-position="center center">
+            <div class="img-placeholder-text">Naskah Lontar Nagarakretagama</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 10: BUKTI SEJARAH 3 -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>BUKTI SEJARAH III: KOMPLEKS TROWULAN</h2>
+            <p>Situs Arsitektur Candi Brahu & Kolam Segaran</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Azzam Wildan Gaza
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="card-box">
+            <h3>Candi Brahu & Tata Air</h3>
+            <p>
+              Candi Buddha berciri bata merah purba tempat penyimpanan abu jenazah raja, serta Kolam Segaran sebagai waduk penampung air pengendali banjir kota.
+            </p>
+          </div>
+
+          <div class="image-frame" role="button" tabindex="0" onclick="openModal('Candi Brahu Trowulan','Situs purbakala peninggalan arsitektur bata merah.')" onkeydown="imageFrameKey(event,'Candi Brahu Trowulan','Situs purbakala peninggalan arsitektur bata merah.')">
+            <img src="https://i.ibb.co.com/4ZyhH8zk/IMG-1012.jpg" alt="Candi Brahu" data-position="center center">
+            <div class="img-placeholder-text">Candi Brahu Trowulan</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 11: BUKTI SEJARAH 4 -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>BUKTI SEJARAH IV: WARINGIN PITU</h2>
+            <p>Prasasti Administrasi Pemerintahan (1447 M)</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Maliq Adrian Enver
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="card-box">
+            <h3>Struktur 14 Wilayah Bhre</h3>
+            <p>
+              Mencatat pembagian wilayah administratif di bawah pimpinan para penguasa daerah bergelar Bhre (seperti Bhre Daha, Wengker, dan Kahuripan).
+            </p>
+          </div>
+
+          <div class="image-frame" role="button" tabindex="0" onclick="openModal('Prasasti Waringin Pitu','Prasasti tembaga penataan wilayah otonom daerah.')" onkeydown="imageFrameKey(event,'Prasasti Waringin Pitu','Prasasti tembaga penataan wilayah otonom daerah.')">
+            <img src="https://i.ibb.co.com/W4Vyp8JH/IMG-1009.jpg" alt="Prasasti Waringin Pitu" data-position="center center">
+            <div class="img-placeholder-text">Prasasti Waringin Pitu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 12: NILAI KETELADANAN -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>3 NILAI KETELADANAN UNTUK PELAJAR</h2>
+            <p>Relevansi Warisan Karakter Kuno dalam Era Modern</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Azzam Wildan Gaza
+          </div>
+        </div>
+
+        <div class="slide-body grid-3">
+          <div class="card-box">
+            <h3>1. Toleransi & Adab Digital</h3>
+            <p>Inspirasi dari semboyan <em>Bhinneka Tunggal Ika</em> untuk menjaga etika berpendapat di ruang siber media sosial.</p>
+          </div>
+          <div class="card-box">
+            <h3>2. Etos Kerja & Inovasi</h3>
+            <p>Semangat kemandirian ekonomi agraris-maritim dalam menguasai teknologi dan literasi modern.</p>
+          </div>
+          <div class="card-box">
+            <h3>3. Integritas Akademik</h3>
+            <p>Ketekunan literasi naskah para pujangga masa lampau sebagai teladan pembelajar tangguh.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 13: KESIMPULAN -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>KESIMPULAN HASIL RISET</h2>
+            <p>Sintesis Keberhasilan dan Refleksi Kebangsaan</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a2 2 0 0 0-2 2v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Maliq Adrian Enver
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="card-box">
+            <h3>Puncak Peradaban Nusantara</h3>
+            <p>
+              Majapahit membuktikan kemampuannya membangun imperium mandiri dengan tata birokrasi, sistem hukum, serta perdagangan internasional kelas dunia.
+            </p>
+          </div>
+          <div class="card-box">
+            <h3>Fondasi Jati Diri Bangsa</h3>
+            <p>
+              Konsep wawasan nusantara, semangat persatuan, dan simbol kebangsaan berakar kuat dari sejarah agung peradaban Kedaton Majapahit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 14: REFERENSI & QNA -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title-group">
+            <h2>DAFTAR REFERENSI & SESI TANYA JAWAB</h2>
+            <p>Rujukan Literatur Akademis dan Portal Resmi</p>
+          </div>
+          <div class="speaker-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a2 2 0 0 0-2 2v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Juru Bicara: Seluruh Anggota Tim
+          </div>
+        </div>
+
+        <div class="slide-body grid-2">
+          <div class="card-box">
+            <h3>Sumber Referensi Utama</h3>
+            <ul>
+              <li>Portal Perpustakaan Nasional RI (perpusnas.go.id)</li>
+              <li>Balai Pelestarian Kebudayaan (BPK) Wilayah XI Jawa Timur</li>
+              <li>Jurnal Sejarah & Arkeologi Universitas Indonesia</li>
+              <li>"Nagara Krtagama" — Prof. Dr. Slamet Muljana</li>
+            </ul>
+          </div>
+
+          <div class="card-box" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:var(--terracotta-dark); color:#FFF;">
+            <h3 style="color:var(--gold-monarchy); font-size:20px;">MATUR NUWUN</h3>
+            <p style="color:var(--gold-bright); margin-top:6px; font-size:13.5px;">Sesi Diskusi & Tanya Jawab Dibuka</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DRAWER NAVIGATION -->
+  <div class="drawer-overlay" id="drawer" aria-hidden="true">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3 style="font-family:var(--font-header); color:var(--terracotta-dark); font-size:15px;">NAVIGASI INDEKS SLIDE</h3>
+        <button class="btn-icon" onclick="closeDrawer()" style="background:var(--terracotta-dark);">Tutup [ESC]</button>
+      </div>
+      <div class="drawer-grid" id="drawer-grid"></div>
+    </div>
+  </div>
+
+  <!-- MODAL VIEWER -->
+  <div class="modal-overlay" id="modal" aria-hidden="true" onclick="modalBackdropClose(event)">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h3 id="modal-title" style="font-family:var(--font-header); color:var(--terracotta-dark); margin-bottom:12px;">Detail Artefak</h3>
+      <p id="modal-desc" style="font-size:13.5px; line-height:1.7; color:var(--text-main); margin-bottom:20px;">Deskripsi detail artefak sejarah.</p>
+      <button class="btn-icon" onclick="closeModal()" style="background:var(--terracotta-dark); margin-left:auto;">Tutup Viewer</button>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================
+       KONFIGURASI DASAR
+    ========================================== */
+
+    let currentSlide = 0;
+    let isTransitioning = false;
+    const TRANSITION_DURATION = 620;
+
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const totalSlides = slides.length;
+
+    const slideTitles = [
+      "1. Cover & Identitas Proyek",
+      "2. Peta Geografi & Mandala",
+      "3. Garis Waktu Kronologis",
+      "4. Pilar Politik: Birokrasi",
+      "5. Diplomasi & Sumpah Palapa",
+      "6. Pilar Ekonomi: Agraris-Maritim",
+      "7. Pilar Sosial-Budaya & Agama",
+      "8. Bukti I: Prasasti Kudadu",
+      "9. Bukti II: Nagarakretagama",
+      "10. Bukti III: Candi Trowulan",
+      "11. Bukti IV: Waringin Pitu",
+      "12. 3 Nilai Keteladanan Gen Z",
+      "13. Kesimpulan Riset",
+      "14. Referensi & Sesi QnA"
+    ];
+
+    /* ==========================================
+       UPDATE INFORMASI SLIDE
+    ========================================== */
+
+    function updateSlideIndicators() {
+      const indicator = document.getElementById('slide-num-indicator');
+      const progress = document.getElementById('progress-fill');
+      const prevButton = document.getElementById('prev-btn');
+      const nextButton = document.getElementById('next-btn');
+
+      indicator.textContent = `${currentSlide + 1}/${totalSlides}`;
+      progress.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+
+      prevButton.disabled = currentSlide === 0;
+      nextButton.disabled = currentSlide === totalSlides - 1;
+    }
+
+    /* ==========================================
+       INISIALISASI SLIDE
+    ========================================== */
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove(
+          'active',
+          'enter-from-right',
+          'enter-from-left',
+          'exit-to-left',
+          'exit-to-right'
+        );
+
+        if (index === currentSlide) {
+          slide.classList.add('active');
+        }
+      });
+
+      updateSlideIndicators();
+    }
+
+    /* ==========================================
+       TRANSISI ANTAR SLIDE
+    ========================================== */
+
+    function transitionTo(targetIndex) {
+      if (isTransitioning) return;
+      if (targetIndex < 0 || targetIndex >= totalSlides) return;
+      if (targetIndex === currentSlide) return;
+
+      isTransitioning = true;
+
+      const previousIndex = currentSlide;
+      const direction = targetIndex > previousIndex ? 'next' : 'previous';
+
+      const outgoingSlide = slides[previousIndex];
+      const incomingSlide = slides[targetIndex];
+
+      outgoingSlide.classList.remove('active');
+      outgoingSlide.classList.add(
+        direction === 'next' ? 'exit-to-left' : 'exit-to-right'
+      );
+
+      incomingSlide.classList.remove(
+        'exit-to-left',
+        'exit-to-right',
+        'enter-from-left',
+        'enter-from-right'
+      );
+
+      incomingSlide.classList.add(
+        direction === 'next' ? 'enter-from-right' : 'enter-from-left'
+      );
+
+      currentSlide = targetIndex;
+      updateSlideIndicators();
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          incomingSlide.classList.remove('enter-from-right', 'enter-from-left');
+          incomingSlide.classList.add('active');
+        });
+      });
+
+      window.setTimeout(() => {
+        outgoingSlide.classList.remove('exit-to-left', 'exit-to-right');
+        isTransitioning = false;
+      }, TRANSITION_DURATION);
+    }
+
+    function changeSlide(direction) {
+      transitionTo(currentSlide + direction);
+    }
+
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+
+      closeDrawer();
+      transitionTo(index);
+    }
+
+    /* ==========================================
+       DRAWER NAVIGATION
+    ========================================== */
+
+    function openDrawer() {
+      const grid = document.getElementById('drawer-grid');
+      grid.innerHTML = '';
+
+      slideTitles.forEach((title, index) => {
+        const item = document.createElement('button');
+
+        item.type = 'button';
+        item.className = `drawer-item ${index === currentSlide ? 'active' : ''}`;
+        item.textContent = title;
+        item.setAttribute('aria-label', `Buka ${title}`);
+
+        item.addEventListener('click', () => goToSlide(index));
+
+        grid.appendChild(item);
+      });
+
+      const drawer = document.getElementById('drawer');
+      drawer.classList.add('active');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeDrawer() {
+      const drawer = document.getElementById('drawer');
+      drawer.classList.remove('active');
+      drawer.setAttribute('aria-hidden', 'true');
+    }
+
+    /* ==========================================
+       TAB SWITCHER
+    ========================================== */
+
+    function switchTab(button, tabId) {
+      const parent = button.closest('.tab-container');
+      if (!parent) return;
+
+      parent.querySelectorAll('.tab-btn').forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      parent.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+
+      button.classList.add('active');
+
+      const selectedTab = document.getElementById(tabId);
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+      }
+    }
+
+    /* ==========================================
+       FLIP CARD - KLIK, TOUCH, KEYBOARD
+    ========================================== */
+
+    function toggleFlipCard(card) {
+      card.classList.toggle('flipped');
+
+      const isFlipped = card.classList.contains('flipped');
+      card.setAttribute('aria-pressed', String(isFlipped));
+    }
+
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => {
+        toggleFlipCard(card);
+      });
+
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleFlipCard(card);
+        }
+      });
+    });
+
+    /* ==========================================
+       IMAGE FRAME - AUTO CROP & PLACEHOLDER
+    ========================================== */
+
+    function initializeImageFrames() {
+      document.querySelectorAll('.image-frame').forEach(frame => {
+        const image = frame.querySelector('img');
+        const placeholder = frame.querySelector('.img-placeholder-text');
+
+        if (!image) return;
+
+        const source = image.getAttribute('src');
+        const position = image.dataset.position || 'center center';
+
+        image.style.objectPosition = position;
+
+        function showPlaceholder() {
+          frame.classList.remove('has-image');
+
+          if (placeholder) {
+            placeholder.style.display = 'block';
+          }
+        }
+
+        function showImage() {
+          frame.classList.add('has-image');
+
+          if (placeholder) {
+            placeholder.style.display = 'block';
+          }
+        }
+
+        image.addEventListener('load', showImage);
+        image.addEventListener('error', showPlaceholder);
+
+        if (!source || source.trim() === '') {
+          showPlaceholder();
+        } else if (image.complete && image.naturalWidth > 0) {
+          showImage();
+        } else if (image.complete && image.naturalWidth === 0) {
+          showPlaceholder();
+        }
+      });
+    }
+
+    function imageFrameKey(event, title, description) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openModal(title, description);
+      }
+    }
+
+    /* ==========================================
+       MODAL VIEWER
+    ========================================== */
+
+    function openModal(title, description) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-desc').textContent = description;
+
+      const modal = document.getElementById('modal');
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    function modalBackdropClose(event) {
+      if (event.target.id === 'modal') {
+        closeModal();
+      }
+    }
+
+    /* ==========================================
+       GLOSARIUM
+    ========================================== */
+
+    function toggleGlosarium() {
+      openModal(
+        'Glosarium Istilah Kedaton Majapahit',
+        '1. Saptaprabhu: Dewan pertimbangan agung keluarga kerajaan.\n' +
+        '2. Amukti Palapa: Sumpah sumpah suci penyatuan Nusantara oleh Gajah Mada.\n' +
+        '3. Kasugatan: Departemen urusan keagamaan Buddha.\n' +
+        '4. Kasaiwan: Departemen urusan keagamaan Siwa Hindu.\n' +
+        '5. Sima: Tanah perdikan bebas pajak yang dianugerahkan raja.'
+      );
+    }
+
+    /* ==========================================
+       FULLSCREEN
+    ========================================== */
+
+    async function toggleFullscreen() {
+      try {
+        if (!document.fullscreenElement) {
+          if (document.documentElement.requestFullscreen) {
+            await document.documentElement.requestFullscreen();
+          } else {
+            openModal(
+              'Fullscreen tidak didukung',
+              'Browser yang digunakan tidak menyediakan fitur fullscreen untuk halaman ini.'
+            );
+          }
+        } else {
+          if (document.exitFullscreen) {
+            await document.exitFullscreen();
+          }
+        }
+      } catch (error) {
+        openModal(
+          'Fullscreen tidak dapat diaktifkan',
+          'Browser mungkin membatasi akses fullscreen. Coba buka presentasi melalui browser desktop atau gunakan menu fullscreen browser.'
+        );
+      }
+
+      updateFullscreenButton();
+    }
+
+    function updateFullscreenButton() {
+      const label = document.getElementById('fullscreen-label');
+      const button = document.getElementById('fullscreen-btn');
+
+      if (!label || !button) return;
+
+      const isFullscreen = Boolean(document.fullscreenElement);
+
+      label.textContent = isFullscreen ? 'Keluar' : 'Fullscreen';
+      button.setAttribute(
+        'aria-label',
+        isFullscreen ? 'Keluar dari fullscreen' : 'Aktifkan fullscreen'
+      );
+    }
+
+    document.addEventListener('fullscreenchange', updateFullscreenButton);
+
+    /* ==========================================
+       KEYBOARD NAVIGATION
+    ========================================== */
+
+    document.addEventListener('keydown', event => {
+      const target = event.target;
+      const isTyping = target.matches(
+        'input, textarea, select, [contenteditable="true"]'
+      );
+
+      if (isTyping) return;
+
+      if (event.key === 'Escape') {
+        closeDrawer();
+        closeModal();
+        return;
+      }
+
+      const drawerOpen = document.getElementById('drawer').classList.contains('active');
+      const modalOpen = document.getElementById('modal').classList.contains('active');
+
+      if (drawerOpen || modalOpen) return;
+
+      if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+        event.preventDefault();
+        changeSlide(1);
+      }
+
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+        event.preventDefault();
+        changeSlide(-1);
+      }
+
+      if (event.key === ' ' && !target.closest('button, .flip-card')) {
+        event.preventDefault();
+        changeSlide(1);
+      }
+
+      if (event.key === 'Home') {
+        event.preventDefault();
+        transitionTo(0);
+      }
+
+      if (event.key === 'End') {
+        event.preventDefault();
+        transitionTo(totalSlides - 1);
+      }
+    });
+
+    /* ==========================================
+       SWIPE NAVIGATION UNTUK TOUCHSCREEN
+    ========================================== */
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const slideViewport = document.querySelector('.slide-viewport');
+
+    slideViewport.addEventListener('touchstart', event => {
+      if (event.touches.length !== 1) return;
+
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+    }, { passive: true });
+
+    slideViewport.addEventListener('touchend', event => {
+      if (event.changedTouches.length !== 1) return;
+
+      const touchEndX = event.changedTouches[0].clientX;
+      const touchEndY = event.changedTouches[0].clientY;
+
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+
+      const isDrawerOpen = document.getElementById('drawer').classList.contains('active');
+      const isModalOpen = document.getElementById('modal').classList.contains('active');
+
+      if (isDrawerOpen || isModalOpen) return;
+
+      if (Math.abs(deltaX) > 65 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+        changeSlide(deltaX < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+
+    /* ==========================================
+       INISIALISASI APLIKASI
+    ========================================== */
+
+    updateSlides();
+    initializeImageFrames();
+    updateFullscreenButton();
+  </script>
+
+</body>
+</html>
